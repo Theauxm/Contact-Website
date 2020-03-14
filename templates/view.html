@@ -2,14 +2,13 @@
 <html>
 <head>
   <title>Contact has been uploaded!</title>
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
-  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <h1>All Contacts:</h1>>
 
-  {% for contact in contacts %} <p>{{ contact }}</p>
+  {% for contact in contacts %} <pre>{{ contact }}</pre>
   {% endfor %}
 
   <form action="/">

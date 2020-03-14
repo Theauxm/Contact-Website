@@ -2,11 +2,10 @@
 <html>
 <head>
   <title>Upload and View contacts</title>
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
-  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form action="/upload/">
+    <form action="/upload">
         <h1>Upload and View contacts</h1>
     
       <label for="name">Name:</label>
@@ -27,7 +26,7 @@
       <input type="submit" value="Upload">
       </form>
     
-      <form action="/view/<user>">
+      <form action="/view/&lt;user&gt;">
         <input type="submit" value="View All Uploaded">
       </form>    
   </form>

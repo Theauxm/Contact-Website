@@ -38,9 +38,6 @@ def upload():
         zip_c = escape(request.args['zip'])
     except:
         zip_c = ""
-
-    if name == "" and address == "" and city == "" and state == "" and zip_c == "":
-        root()
         
     kind = 'Contacts'
     uqID = hash(name + address + city + state + zip_c)
@@ -64,8 +61,12 @@ def view(user):
     query = datastore_client.query(kind='Contacts')
 
     contact_list = query.fetch()
+    refined_list = []
 
-    return render_template('view.html', contacts=contact_list)
+    for q in contact_list:
+        refined_list.append("Name: " + str(q['name']) + "\n Address: " + str(q['address']) + "\n City: " + str(q['city']) + "\n State: " + str(q['state']) + "\n Zip: " + str(q['zip']) + "\n\n")
+
+    return render_template('view.html', contacts=refined_list)
 
 if __name__ == '__main__':
     # App Engine itself will serve those files as configured in app.yaml.
