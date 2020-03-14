@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+  <title>Contact has been uploaded!</title>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <h1>The contact you uploaded:</h1>>
+
+  {% for attribute in contact %} <p>{{ attribute }}</p>
+  {% endfor %}
+
+  <form action="/">
+    <input type="submit" value="Upload another contact">
+  </form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <title>Upload and View contacts</title>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <form action="/upload/">
+        <h1>Upload and View contacts</h1>
+    
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name"><br><br>
+    
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address"><br><br>
+    
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city"><br><br>
+    
+      <label for="state">State:</label>
+      <input type="text" id="state" name="state"><br><br>
+    
+      <label for="zip">Zip Code:</label>
+      <input type="text" id="zip" name="zip"><br><br>
+    
+      <input type="submit" value="Upload">
+      </form>
+    
+      <form action="/view/<user>">
+        <input type="submit" value="View All Uploaded">
+      </form>    
+  </form>
+</body>
+</html>
