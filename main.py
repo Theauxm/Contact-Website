@@ -40,8 +40,7 @@ def upload():
         zip_c = ""
         
     kind = 'Contacts'
-    uqID = hash(name + address + city + state + zip_c)
-    contact_key = datastore_client.key(kind, uqID)
+    contact_key = datastore_client.key(kind)
     contact = datastore.Entity(key=contact_key)
 
     contact['name'] = name
@@ -50,7 +49,10 @@ def upload():
     contact['state'] = state
     contact['zip'] = zip_c
 
-    datastore_client.put(contact)
+    try:
+        datastore_client.put(contact)
+    except:
+        return root()
 
     attributes = [name, address, city, state, zip_c]
 
@@ -61,10 +63,22 @@ def view(user):
     query = datastore_client.query(kind='Contacts')
 
     contact_list = query.fetch()
+    for q in contact_list:
+        if user == str(q.id):
+            return "Key: " + str(q.id) + "\n Name: " + str(q['name']) + "\n Address: " + str(q['address']) + "\n City: " + str(q['city']) + "\n State: " + str(q['state']) + "\n Zip: " + str(q['zip']) + "\n\n"
+
+    return "Could not find contact based on key!"
+
+@app.route('/view')
+def view_all():
+    query = datastore_client.query(kind='Contacts')
+
+
+    contact_list = query.fetch()
     refined_list = []
 
     for q in contact_list:
-        refined_list.append("Name: " + str(q['name']) + "\n Address: " + str(q['address']) + "\n City: " + str(q['city']) + "\n State: " + str(q['state']) + "\n Zip: " + str(q['zip']) + "\n\n")
+        refined_list.append("Key: " + str(q.id) + "\n Name: " + str(q['name']) + "\n Address: " + str(q['address']) + "\n City: " + str(q['city']) + "\n State: " + str(q['state']) + "\n Zip: " + str(q['zip']) + "\n\n")
 
     return render_template('view.html', contacts=refined_list)
 

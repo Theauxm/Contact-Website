@@ -7,6 +7,17 @@
 <body>
     <form action="/upload">
         <h1>Upload and View contacts</h1>
+        <p>Welcome to your new address book! To get started, 
+          input the specified fields and click "Upload". 
+        </p>
+
+        <p>To see a contact you've uploaded, click "View All Uploaded"
+          to find the contact's key, then search using the URL:
+        </p>
+
+        <p>
+          http://contacts-website-00000.appspot.com/view/*key*
+        </p>
     
       <label for="name">Name:</label>
       <input type="text" id="name" name="name"><br><br>
@@ -25,8 +36,8 @@
     
       <input type="submit" value="Upload">
       </form>
-    
-      <form action="/view/&lt;user&gt;">
+
+      <form action="/view">
         <input type="submit" value="View All Uploaded">
       </form>    
   </form>
